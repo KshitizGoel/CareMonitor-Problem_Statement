@@ -7,8 +7,6 @@ public class AssignmentQ1 {
 
 
     // This part consists of solution of the Problem Solving question.
-    // README file consists of answer of other part of the Problem Solving question.
-
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         try {
@@ -26,41 +24,32 @@ public class AssignmentQ1 {
             int max_number = 122;
             int min_number = 96;
 
-
+            //Setting the ASCII values of the Strings--------------------------------------------------------
             byte[] ascii = inputString.getBytes(StandardCharsets.US_ASCII);
             StringBuilder req_output = new StringBuilder();
 
-
             for (int i = 0; i < inputString.length(); i++) {
 
-                int temp = ascii[i] + n;
+                //Algorithm for adding the remainder of any number ( No matter how big )---------------------
+                int temp = ascii[i] + (n % 26);
                 char a;
 
+                //Conditions to set up the required ASCII byte array----------------------------------------
                 if (temp > max_number) {
-
-                    if ((temp - max_number) % 26 != 0) {
-                        ascii[i] = (byte) (min_number + (temp - max_number) % 26);
-                    } else {
-                        ascii[i] = (byte) (min_number + (temp - max_number) % 26 + 1);
-                    }
+                    ascii[i] = (byte) (min_number + temp - max_number);
                 } else {
                     ascii[i] = (byte) temp;
                 }
                 a = (char) ascii[i];
-
                 req_output.append(a);
             }
-
 
             System.out.println();
             System.out.println("Getting the Required Output Here!!!!");
             System.out.println(req_output);
 
         } catch (Exception e) {
-
             System.out.println("Getting the Exception Here!!!!" + e);
         }
-
     }
-
 }
