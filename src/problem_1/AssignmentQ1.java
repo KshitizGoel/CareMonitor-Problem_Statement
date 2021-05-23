@@ -13,21 +13,22 @@ public class AssignmentQ1 {
         // TODO Auto-generated method stub
         try {
 
+            //Getting the input of String from the user------------------------------------------------------
             System.out.println("enter you input here in SMALL LETTERS : ");
             Scanner sc = new Scanner(System.in);
             String inputString = sc.next().trim();
 
-
+            //Getting the input of number that is used to increment the alphabets----------------------------
             System.out.println("enter the number from which the letters are supposed to be incremented!");
-            byte n = sc.nextByte();
+            int n = sc.nextInt();
 
-
-            byte max_number = 122;
-            byte min_number = 96;
+            //Initialising the max and min values of ASCII values of small alphabets--------------------------
+            int max_number = 122;
+            int min_number = 96;
 
 
             byte[] ascii = inputString.getBytes(StandardCharsets.US_ASCII);
-             StringBuilder req_output = new StringBuilder();
+            StringBuilder req_output = new StringBuilder();
 
 
             for (int i = 0; i < inputString.length(); i++) {
@@ -36,7 +37,12 @@ public class AssignmentQ1 {
                 char a;
 
                 if (temp > max_number) {
-                    ascii[i] = (byte) (min_number + temp - max_number);
+
+                    if ((temp - max_number) % 26 != 0) {
+                        ascii[i] = (byte) (min_number + (temp - max_number) % 26);
+                    } else {
+                        ascii[i] = (byte) (min_number + (temp - max_number) % 26 + 1);
+                    }
                 } else {
                     ascii[i] = (byte) temp;
                 }
@@ -53,7 +59,7 @@ public class AssignmentQ1 {
         } catch (Exception e) {
 
             System.out.println("Getting the Exception Here!!!!" + e);
-         }
+        }
 
     }
 
